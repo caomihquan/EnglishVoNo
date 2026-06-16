@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  AZURE_WEBAPP_NAME: EnglishNoVo
+  AZURE_WEBAPP_NAME: EnglishVoNo
   DOTNET_VERSION: '10.0.x'
 
 jobs:
