@@ -1,3 +1,4 @@
+using EnglishVoNo.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EnglishVoNo.Controllers
@@ -6,21 +7,22 @@ namespace EnglishVoNo.Controllers
     [Route("[controller]")]
     public class VocabularyController : ControllerBase
     {
+        private readonly IVocabularyService _vocabularyService;
+        public VocabularyController(IVocabularyService vocabularyService) 
+        {
+            _vocabularyService= vocabularyService;
+        }
+
         private static readonly string[] Summaries =
         [
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         ];
 
         [HttpGet("get")]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<IActionResult> Get()
         {
-            return Enumerable.Range(1, 10).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            var result = await _vocabularyService.GetAllAsync();
+            return Ok(result);
         }
     }
 }
