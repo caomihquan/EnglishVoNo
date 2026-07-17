@@ -30,7 +30,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
-app.MapGet("/ping", () => Results.Ok("pong"));
+app.MapGet("/ping", () => Results.Ok("pong1"));
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
